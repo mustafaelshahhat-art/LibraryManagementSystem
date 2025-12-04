@@ -1,17 +1,42 @@
 # 📚 Library Management System
 
-A comprehensive Windows Forms application for managing library operations built with C# and .NET 6.
+A comprehensive Windows Forms application for managing library operations built with **C# and .NET 6**.
+
+![.NET](https://img.shields.io/badge/.NET-6.0-512BD4?style=flat&logo=dotnet)
+![C#](https://img.shields.io/badge/C%23-10.0-239120?style=flat&logo=csharp)
+![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=flat&logo=sqlite)
+![Windows Forms](https://img.shields.io/badge/Windows%20Forms-Desktop-0078D4?style=flat&logo=windows)
+
+---
+
+## 📸 Screenshots
+
+### Main Menu
+![Main Menu](Documentation/MainMenu.png)
+
+### Book Management
+![Books](Documentation/Books.png)
+
+### Loan Management
+![Loans](Documentation/Loans.png)
+
+### ERD Diagram
+![ERD](Documentation/ERD.png)
+
+---
 
 ## 🎯 Features
 
 ### Core Functionality
-- **Book Management**: Add, update, delete books with multi-copy support
-- **Author Management**: Manage author information
-- **Publisher Management**: Track publisher details
-- **Category Management**: Manage book categories
-- **Member Management**: Register and manage library members
-- **Loan System**: Issue and return books with automatic copy selection
-- **Reports**: View library statistics and analytics
+| Feature | Description |
+|---------|-------------|
+| 📖 **Book Management** | Add, update, delete books with multi-copy support |
+| ✍️ **Author Management** | Manage author information and biographies |
+| 🏢 **Publisher Management** | Track publisher details and contacts |
+| 🏷️ **Category Management** | Organize books by categories |
+| 👥 **Member Management** | Register and manage library members |
+| 🔄 **Loan System** | Issue and return books with automatic tracking |
+| 📊 **Reports** | View library statistics and analytics |
 
 ### Technical Highlights
 - ✅ Clean architecture with separation of concerns
@@ -21,118 +46,108 @@ A comprehensive Windows Forms application for managing library operations built 
 - ✅ Modern, responsive UI design
 - ✅ Transaction-based operations for data integrity
 - ✅ Foreign key constraints enforcement
-- ✅ Data integrity protection (prevent orphaned records)
+
+---
 
 ## 📁 Project Structure
 
 ```
 LibraryManagementSystem/
-├── Forms/                      # UI Layer
-│   ├── MainMenuForm.cs        # Main menu
-│   ├── BooksForm.cs           # Book management
-│   ├── AuthorsForm.cs         # Author management
-│   ├── PublishersForm.cs      # Publisher management
-│   ├── CategoriesForm.cs      # Category management
-│   ├── MembersForm.cs         # Member management
-│   ├── LoansForm.cs           # Loan management
-│   └── ReportsForm.cs         # Reports and statistics
-├── Data/                       # Data Access Layer
-│   ├── DatabaseHelper.cs      # Database initialization & seeding
-│   ├── BookRepository.cs      # Book data operations
-│   ├── AuthorRepository.cs    # Author data operations
-│   ├── PublisherRepository.cs # Publisher data operations
-│   ├── CategoryRepository.cs  # Category data operations
-│   ├── MemberRepository.cs    # Member data operations
-│   └── LoanRepository.cs      # Loan data operations
-├── Models/                     # Domain Models
-│   └── Entities.cs            # All entity classes
-├── Documentation/              # Project Documentation
+├── 📂 Forms/                    # UI Layer
+│   ├── MainMenuForm.cs         # Main navigation menu
+│   ├── BooksForm.cs            # Book management
+│   ├── AuthorsForm.cs          # Author management
+│   ├── PublishersForm.cs       # Publisher management
+│   ├── CategoriesForm.cs       # Category management
+│   ├── MembersForm.cs          # Member management
+│   ├── LoansForm.cs            # Loan transactions
+│   └── ReportsForm.cs          # Reports & statistics
+│
+├── 📂 Data/                     # Data Access Layer
+│   ├── DatabaseHelper.cs       # Database initialization
+│   ├── BookRepository.cs       # Book CRUD operations
+│   ├── AuthorRepository.cs     # Author CRUD operations
+│   ├── PublisherRepository.cs  # Publisher CRUD operations
+│   ├── CategoryRepository.cs   # Category CRUD operations
+│   ├── MemberRepository.cs     # Member CRUD operations
+│   └── LoanRepository.cs       # Loan CRUD operations
+│
+├── 📂 Models/                   # Domain Models
+│   └── Entities.cs             # All entity classes
+│
+├── 📂 Documentation/            # Project Documentation
 │   ├── ProjectDocumentation.html
 │   ├── ProjectDocumentation.md
-│   ├── schema.sql
-│   └── (Images)
-├── LibraryDB.sqlite           # SQLite database file
-└── Program.cs                  # Application entry point
+│   └── [Screenshots]
+│
+├── 📄 LibraryDB.sqlite          # SQLite database
+├── 📄 schema.sql                # Database schema
+├── 📄 Program.cs                # Entry point
+└── 📄 README.md                 # This file
 ```
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- .NET 6.0 SDK or later
-- Windows OS
+- ✅ .NET 6.0 SDK or later
+- ✅ Windows OS
+- ✅ Visual Studio 2022 (recommended)
 
 ### Installation
 
-1. **Clone or download the project**
-   ```bash
-   cd LibraryManagementSystem
-   ```
+```bash
+# 1. Clone the repository
+git clone https://github.com/mustafaelshahhat-art/LibraryManagementSystem.git
 
-2. **Restore dependencies**
-   ```bash
-   dotnet restore
-   ```
+# 2. Navigate to project directory
+cd LibraryManagementSystem
 
-3. **Build the project**
-   ```bash
-   dotnet build
-   ```
+# 3. Restore dependencies
+dotnet restore
 
-4. **Run the application**
-   ```bash
-   dotnet run
-   ```
+# 4. Build the project
+dotnet build
+
+# 5. Run the application
+dotnet run
+```
 
 ### First Run
-On first launch, the application will:
-- Create the SQLite database (`LibraryDB.sqlite`)
-- Execute the schema from `schema.sql`
-- Populate sample data (5 books, 5 authors, 5 publishers, 5 members, 3 loans)
+On first launch, the application will automatically:
+- ✅ Create the SQLite database (`LibraryDB.sqlite`)
+- ✅ Execute the schema from `schema.sql`
+- ✅ Populate sample data
+
+---
 
 ## 💾 Database Schema
 
-### Tables
-- **BOOK**: Book information (ISBN, Title, Year, Edition, Publisher)
-- **AUTHOR**: Author details (Name, Biography, Birth Date)
-- **PUBLISHER**: Publisher information (Name, Address, Contact)
-- **MEMBER**: Library member data (Name, Email, Phone, Join Date)
-- **BOOK_COPY**: Physical book copies (Copy ID, ISBN, Status, Location)
-- **LOAN**: Loan records (Loan ID, Copy ID, Member ID, Dates, Status)
-- **BOOK_AUTHOR**: Many-to-many relationship between books and authors
-- **CATEGORY**: Book categories
-- **BOOK_CATEGORY**: Many-to-many relationship between books and categories
+### Entity Relationship
+| Table | Description |
+|-------|-------------|
+| `PUBLISHER` | Publisher information |
+| `AUTHOR` | Author details |
+| `CATEGORY` | Book categories |
+| `BOOK` | Book information (ISBN as PK) |
+| `BOOK_AUTHOR` | Many-to-many: Books ↔ Authors |
+| `BOOK_CATEGORY` | Many-to-many: Books ↔ Categories |
+| `BOOK_COPY` | Physical book copies |
+| `MEMBER` | Library members |
+| `LOAN` | Loan transactions |
 
-## 🎨 User Interface
+### Relationships
+```
+PUBLISHER ──1:N──► BOOK
+AUTHOR    ◄──M:N──► BOOK (via BOOK_AUTHOR)
+CATEGORY  ◄──M:N──► BOOK (via BOOK_CATEGORY)
+BOOK      ──1:N──► BOOK_COPY
+BOOK_COPY ──1:N──► LOAN
+MEMBER    ──1:N──► LOAN
+```
 
-### Main Menu
-- Clean, grid-based navigation
-- Large, accessible buttons
-- Intuitive layout
-
-### Forms
-- Consistent design across all forms
-- DataGridView for data display
-- Input validation
-- Clear error messages
-
-## 🔧 Key Features Explained
-
-### Book Management
-- Add books with single author selection
-- Specify number of copies to create
-- Update book information
-- Delete books (cascading delete of copies and loans)
-
-### Loan System
-- Select available books only (books with available copies)
-- Automatic copy selection (system picks first available copy)
-- Track loan status (Active/Returned)
-- Return books with automatic status update
-
-### Data Seeding
-- Automatic on first run
-- Granular checks to prevent duplicates
-- Transaction-based for data integrity
+---
 
 ## 📦 Dependencies
 
@@ -141,10 +156,11 @@ On first launch, the application will:
 <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
 ```
 
+---
+
 ## 🛠️ Development
 
 ### Reset Database
-To reset the database with fresh sample data:
 ```bash
 del LibraryDB.sqlite
 dotnet run
@@ -153,34 +169,46 @@ dotnet run
 ### Build for Release
 ```bash
 dotnet build -c Release
+dotnet publish -c Release -o ./publish
 ```
 
-## 📝 Notes
+---
 
-- **ISBN**: Must be unique (Primary Key)
-- **Loan Duration**: Default 14 days
-- **Copy Status**: Automatically managed (Available/Loaned)
-- **Cascading Deletes**: Deleting a book removes all related copies and loans
-- **Delete Protection**:
-  - Cannot delete members with active loans
-  - Cannot delete authors with existing books
-  - Cannot delete publishers with existing books
-  - Cannot delete categories with existing books
-- **Email Validation**: Basic validation for email format
+## 📝 Business Rules
 
-## 🐛 Known Issues
+| Rule | Description |
+|------|-------------|
+| 📖 ISBN | Must be unique (Primary Key) |
+| ⏰ Loan Duration | Default 14 days |
+| 📚 Copy Status | Automatically managed (Available/Loaned/Lost) |
+| 🗑️ Cascading | Deleting a book removes related copies and loans |
+| 🛡️ Protection | Cannot delete members with active loans |
 
-- Nullable reference type warnings (non-critical, does not affect functionality)
+---
 
-## 📄 License
+## 📄 Documentation
 
-This project is for educational purposes.
+Full project documentation is available in the `Documentation/` folder:
+- 📄 `ProjectDocumentation.html` - Full HTML documentation (print-ready)
+- 📄 `ProjectDocumentation.md` - Markdown documentation
+- 🖼️ Screenshots of all forms
+
+---
 
 ## 👨‍💻 Author
 
-Developed as a comprehensive library management solution using modern C# practices.
+**Mustafa Elshahhat**  
+GitHub: [@mustafaelshahhat-art](https://github.com/mustafaelshahhat-art)
+
+---
+
+## 📄 License
+
+This project is for educational purposes - Database Systems 1 Course Project.
 
 ---
 
 **Version**: 1.0  
-**Last Updated**: December 2025
+**Last Updated**: December 2024
+
+⭐ Star this repo if you find it helpful!
