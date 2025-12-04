@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Library Management System - Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            color: #000;
+            background: #888;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body {
+                background: white;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+
+        /* A4 PAGE */
+        .page {
+            width: 21cm;
+            height: 29.7cm;
+            margin: 20px auto;
+            padding: 1.5cm;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* COVER */
+        .cover {
+            border: 3px solid #000;
+            justify-content: space-between;
+        }
+
+        .cover-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .uni-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .uni-logo .emoji {
+            font-size: 50px;
+        }
+
+        .uni-logo .name {
+            font-size: 18pt;
+            color: #1e40af;
+            font-weight: bold;
+        }
+
+        .uni-logo .sub {
+            font-size: 10pt;
+            color: #666;
+        }
+
+        .faculty-logo {
+            width: 120px;
+            height: 120px;
+            border: 3px solid #f97316;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .faculty-logo .emoji {
+            font-size: 40px;
+        }
+
+        .faculty-logo .text {
+            font-size: 9pt;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .cover-center {
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .course-title {
+            font-size: 22pt;
+            margin-bottom: 20px;
+        }
+
+        .project-title {
+            font-size: 38pt;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .title-line {
+            width: 60%;
+            height: 2px;
+            background: #000;
+            margin: 0 auto;
+        }
+
+        .cover-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .supervised {
+            margin-bottom: 30px;
+        }
+
+        .supervised h3 {
+            font-size: 16pt;
+            text-decoration: underline;
+            margin-bottom: 12px;
+        }
+
+        .supervised ol {
+            margin-left: 35px;
+            font-size: 14pt;
+            line-height: 1.8;
+        }
+
+        .submitted {
+            text-align: center;
+        }
+
+        .submitted h3 {
+            font-size: 16pt;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .students-table {
+            width: 50%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        .students-table th,
+        .students-table td {
+            border: 2px solid #000;
+            padding: 8px 12px;
+            font-size: 12pt;
+        }
+
+        .students-table th {
+            background: #f0f0f0;
+        }
+
+        .academic-year {
+            text-align: center;
+            font-size: 14pt;
+            font-weight: bold;
+            padding-top: 20px;
+        }
+
+        /* CONTENT */
+        .content-page {
+            justify-content: flex-start;
+            line-height: 1.5;
+        }
+
+        .content-page.spread {
+            justify-content: space-between;
+        }
+
+        .content-page.center {
+            justify-content: center;
+        }
+
+        .page-title {
+            font-size: 20pt;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 16pt;
+            margin: 18px 0 10px;
+        }
+
+        h3 {
+            font-size: 13pt;
+            margin: 12px 0 6px;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 8px;
+            text-align: justify;
+            font-size: 11pt;
+            line-height: 1.5;
+        }
+
+        ul,
+        ol {
+            margin: 8px 0 8px 25px;
+            font-size: 11pt;
+        }
+
+        li {
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .toc-list {
+            font-size: 13pt;
+            line-height: 2;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .figure {
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .figure img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border: 1px solid #ccc;
+        }
+
+        .caption {
+            margin-top: 6px;
+            font-size: 10pt;
+            font-style: italic;
+            color: #555;
+        }
+
+        pre {
+            background: #f5f5f5;
+            border: 1px solid #000;
+            padding: 8px;
+            margin: 6px 0;
+            font-family: monospace;
+            font-size: 9pt;
+        }
+
+        .check {
+            color: green;
+        }
+
+        .spacer {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PAGE 1: COVER -->
+    <div class="page cover">
+        <div class="cover-header">
+            <div class="uni-logo">
+                <div class="emoji">🎓</div>
+                <div>
+                    <div class="name">Modern University</div>
+                    <div class="sub">for technology & information</div>
+                </div>
+            </div>
+            <div class="faculty-logo">
+                <div class="emoji">💻</div>
+                <div class="text">Faculty of<br>Computers &<br>Artificial Intelligence</div>
+            </div>
+        </div>
+        <div class="cover-center">
+            <h2 class="course-title">Database Systems 1</h2>
+            <h1 class="project-title">Library Management<br>System</h1>
+            <div class="title-line"></div>
+        </div>
+        <div class="cover-info">
+            <div class="supervised">
+                <h3>Supervised By:</h3>
+                <ol>
+                    <li>Prof. Hanafy Ismail</li>
+                    <li>T.A.: [TA Name]</li>
+                    <li>T.A.: [TA Name]</li>
+                </ol>
+            </div>
+            <div class="submitted">
+                <h3>Submitted By</h3>
+                <table class="students-table">
+                    <tr>
+                        <th>Student Name</th>
+                    </tr>
+                    <tr>
+                        <td>1) [Student Name]</td>
+                    </tr>
+                    <tr>
+                        <td>2) [Student Name]</td>
+                    </tr>
+                    <tr>
+                        <td>3) [Student Name]</td>
+                    </tr>
+                    <tr>
+                        <td>4) [Student Name]</td>
+                    </tr>
+                    <tr>
+                        <td>5) [Student Name]</td>
+                    </tr>
+                    <tr>
+                        <td>6) [Student Name]</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="academic-year">Academic Year: 2025 - 2026</div>
+    </div>
+
+    <!-- PAGE 2: TOC -->
+    <div class="page content-page">
+        <h1 class="page-title">Table of Contents</h1>
+        <div class="toc-list">
+            <ol>
+                <li>Introduction</li>
+                <li>Functional View</li>
+                <li>Entity Relationship Diagram (ERD) and Mapping to Tables</li>
+                <li>Database Relationships and Tables with Sample Data</li>
+                <li>Input / Output Interface Design
+                    <ol style="list-style-type: lower-alpha; margin-top: 8px;">
+                        <li>Main Menu</li>
+                        <li>Forms</li>
+                        <li>Transactions</li>
+                        <li>Queries</li>
+                        <li>Reports</li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- PAGE 3: INTRODUCTION -->
+    <div class="page content-page spread">
+        <h1 class="page-title">1. Introduction</h1>
+        <div>
+            <p>The <strong>Library Management System</strong> is a comprehensive desktop application developed to
+                streamline and automate library operations. Built using <strong>C# and .NET 6</strong> with
+                <strong>Windows Forms</strong>, the system provides an efficient platform for managing books, authors,
+                publishers, categories, members, and loan transactions.</p>
+            <p>This system replaces traditional manual record-keeping methods with a digital solution that ensures
+                accuracy, speed, and reliability.</p>
+        </div>
+        <div>
+            <h2>System Objectives</h2>
+            <ul>
+                <li><strong>Automation:</strong> Eliminate manual logging and reduce human error</li>
+                <li><strong>Efficiency:</strong> Speed up borrowing and return processes</li>
+                <li><strong>Accuracy:</strong> Maintain accurate inventory and member records</li>
+                <li><strong>Accessibility:</strong> Provide real-time book availability information</li>
+                <li><strong>Security:</strong> Implement proper data validation and integrity constraints</li>
+            </ul>
+        </div>
+        <div class="spacer"></div>
+    </div>
+
+    <!-- PAGE 4: FUNCTIONAL VIEW -->
+    <div class="page content-page spread">
+        <h1 class="page-title">2. Functional View</h1>
+        <div>
+            <h2>Maintain Basic Data</h2>
+            <ul>
+                <li><span class="check">✓</span> Publisher (Publisher_ID, Name, Address, Phone)</li>
+                <li><span class="check">✓</span> Author (Author_ID, Name, Bio, BirthDate)</li>
+                <li><span class="check">✓</span> Category (Category_ID, Name, Description)</li>
+                <li><span class="check">✓</span> Book (ISBN, Title, Year, Publisher_ID)</li>
+                <li><span class="check">✓</span> Book_Copy (Copy_ID, Book_ISBN, Status)</li>
+                <li><span class="check">✓</span> Member (Member_ID, FirstName, LastName, Email, Phone)</li>
+                <li><span class="check">✓</span> Loan (Loan_ID, Book_Copy_ID, Member_ID, Dates, Status)</li>
+            </ul>
+        </div>
+        <div>
+            <h2>Query Subsystems</h2>
+            <ul>
+                <li><span class="check">✓</span> Search by Book Title / ISBN</li>
+                <li><span class="check">✓</span> Search by Author / Publisher Name</li>
+                <li><span class="check">✓</span> Search by Member Name</li>
+            </ul>
+            <h2>Transactions</h2>
+            <ul>
+                <li><span class="check">✓</span> Add, delete, update all entities</li>
+                <li><span class="check">✓</span> Issue book loans / Process returns</li>
+            </ul>
+            <h2>Reports</h2>
+            <ul>
+                <li>Total books, Active loans, Overdue summary</li>
+                <li>Books by category/author, Member history</li>
+            </ul>
+        </div>
+        <div class="spacer"></div>
+    </div>
+
+    <!-- PAGE 5: ERD -->
+    <div class="page content-page">
+        <h1 class="page-title">3. ERD and Mapping</h1>
+        <div class="figure">
+            <img src="ERD.png" alt="ERD">
+            <div class="caption">Figure 1: Entity Relationship Diagram</div>
+        </div>
+    </div>
+
+    <!-- PAGE 6: SQL 1 -->
+    <div class="page content-page">
+        <h1 class="page-title">Database Schema - Part 1</h1>
+
+        <h3>1. PUBLISHER Table</h3>
+        <pre>CREATE TABLE PUBLISHER (
+    Publisher_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL,
+    Address TEXT,
+    Phone TEXT
+);</pre>
+
+        <h3>2. AUTHOR Table</h3>
+        <pre>CREATE TABLE AUTHOR (
+    Author_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL,
+    Bio TEXT,
+    BirthDate TEXT
+);</pre>
+
+        <h3>3. CATEGORY Table</h3>
+        <pre>CREATE TABLE CATEGORY (
+    Category_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL UNIQUE,
+    Description TEXT
+);</pre>
+    </div>
+
+    <!-- PAGE 7: SQL 2 -->
+    <div class="page content-page">
+        <h1 class="page-title">Database Schema - Part 2</h1>
+
+        <h3>4. BOOK Table</h3>
+        <pre>CREATE TABLE BOOK (
+    ISBN TEXT PRIMARY KEY,
+    Title TEXT NOT NULL,
+    Year INTEGER,
+    Publisher_ID INTEGER,
+    FOREIGN KEY (Publisher_ID) REFERENCES PUBLISHER(Publisher_ID)
+);</pre>
+
+        <h3>5. BOOK_AUTHOR Table</h3>
+        <pre>CREATE TABLE BOOK_AUTHOR (
+    Book_ISBN TEXT,
+    Author_ID INTEGER,
+    PRIMARY KEY (Book_ISBN, Author_ID),
+    FOREIGN KEY (Book_ISBN) REFERENCES BOOK(ISBN),
+    FOREIGN KEY (Author_ID) REFERENCES AUTHOR(Author_ID)
+);</pre>
+
+        <h3>6. BOOK_CATEGORY Table</h3>
+        <pre>CREATE TABLE BOOK_CATEGORY (
+    Book_ISBN TEXT,
+    Category_ID INTEGER,
+    PRIMARY KEY (Book_ISBN, Category_ID),
+    FOREIGN KEY (Book_ISBN) REFERENCES BOOK(ISBN),
+    FOREIGN KEY (Category_ID) REFERENCES CATEGORY(Category_ID)
+);</pre>
+    </div>
+
+    <!-- PAGE 8: SQL 3 -->
+    <div class="page content-page">
+        <h1 class="page-title">Database Schema - Part 3</h1>
+
+        <h3>7. BOOK_COPY Table</h3>
+        <pre>CREATE TABLE BOOK_COPY (
+    Copy_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Book_ISBN TEXT,
+    Status TEXT CHECK(Status IN ('Available', 'Loaned', 'Lost')) DEFAULT 'Available',
+    FOREIGN KEY (Book_ISBN) REFERENCES BOOK(ISBN)
+);</pre>
+
+        <h3>8. MEMBER Table</h3>
+        <pre>CREATE TABLE MEMBER (
+    Member_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    FirstName TEXT NOT NULL,
+    LastName TEXT NOT NULL,
+    Email TEXT,
+    Phone TEXT,
+    JoinDate TEXT DEFAULT CURRENT_DATE
+);</pre>
+
+        <h3>9. LOAN Table</h3>
+        <pre>CREATE TABLE LOAN (
+    Loan_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Book_Copy_ID INTEGER,
+    Member_ID INTEGER,
+    Loan_Date TEXT DEFAULT CURRENT_DATE,
+    Due_Date TEXT,
+    Return_Date TEXT,
+    Status TEXT CHECK(Status IN ('Active', 'Returned', 'Overdue')) DEFAULT 'Active',
+    FOREIGN KEY (Book_Copy_ID) REFERENCES BOOK_COPY(Copy_ID),
+    FOREIGN KEY (Member_ID) REFERENCES MEMBER(Member_ID)
+);</pre>
+    </div>
+
+    <!-- PAGE 9: RELATIONSHIPS -->
+    <div class="page content-page center">
+        <h1 class="page-title">4. Database Relationships</h1>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+            <ul style="font-size: 14pt; line-height: 2.5;">
+                <li><strong>PUBLISHER → BOOK:</strong> One-to-Many</li>
+                <li><strong>AUTHOR ↔ BOOK:</strong> Many-to-Many (via BOOK_AUTHOR)</li>
+                <li><strong>CATEGORY ↔ BOOK:</strong> Many-to-Many (via BOOK_CATEGORY)</li>
+                <li><strong>BOOK → BOOK_COPY:</strong> One-to-Many</li>
+                <li><strong>MEMBER → LOAN:</strong> One-to-Many</li>
+                <li><strong>BOOK_COPY → LOAN:</strong> One-to-Many</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PAGE 10: MAIN MENU -->
+    <div class="page content-page">
+        <h1 class="page-title">5. Interface Design</h1>
+        <h2>A. Main Menu</h2>
+        <div class="figure">
+            <img src="MainMenu.png" alt="Main Menu">
+            <div class="caption">Figure 2: Main Menu</div>
+        </div>
+    </div>
+
+    <!-- PAGE 11: BOOKS -->
+    <div class="page content-page">
+        <h2>B. Forms - Book Management</h2>
+        <div class="figure">
+            <img src="Books.png" alt="Books">
+            <div class="caption">Figure 3: Book Management</div>
+        </div>
+    </div>
+
+    <!-- PAGE 12: AUTHORS -->
+    <div class="page content-page">
+        <h2>Author Management</h2>
+        <div class="figure">
+            <img src="Authors.png" alt="Authors">
+            <div class="caption">Figure 4: Author Management</div>
+        </div>
+    </div>
+
+    <!-- PAGE 13: PUBLISHERS -->
+    <div class="page content-page">
+        <h2>Publisher Management</h2>
+        <div class="figure">
+            <img src="Publishers.png" alt="Publishers">
+            <div class="caption">Figure 5: Publisher Management</div>
+        </div>
+    </div>
+
+    <!-- PAGE 14: CATEGORIES -->
+    <div class="page content-page">
+        <h2>Category Management</h2>
+        <div class="figure">
+            <img src="Categories.png" alt="Categories">
+            <div class="caption">Figure 6: Category Management</div>
+        </div>
+    </div>
+
+    <!-- PAGE 15: MEMBERS -->
+    <div class="page content-page">
+        <h2>Member Management</h2>
+        <div class="figure">
+            <img src="Members.png" alt="Members">
+            <div class="caption">Figure 7: Member Management</div>
+        </div>
+    </div>
+
+    <!-- PAGE 16: LOANS -->
+    <div class="page content-page">
+        <h2>C. Transactions - Loans</h2>
+        <div class="figure">
+            <img src="Loans.png" alt="Loans">
+            <div class="caption">Figure 8: Loan Transactions</div>
+        </div>
+    </div>
+
+    <!-- PAGE 17: QUERIES -->
+    <div class="page content-page center">
+        <h2>D. Queries</h2>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+            <p style="font-size: 13pt;">Search capabilities:</p>
+            <ul style="font-size: 13pt; line-height: 2.2;">
+                <li>Book Search: By title, ISBN, author, category, publisher</li>
+                <li>Member Search: By name, email, member ID</li>
+                <li>Loan Search: By member, book, date range</li>
+                <li>Availability Check: Real-time status</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PAGE 18: REPORTS -->
+    <div class="page content-page">
+        <h2>E. Reports</h2>
+        <div class="figure">
+            <img src="Reports.png" alt="Reports">
+            <div class="caption">Figure 9: Reports Dashboard</div>
+        </div>
+    </div>
+
+</body>
+
+</html>

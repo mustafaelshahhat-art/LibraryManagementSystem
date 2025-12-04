@@ -1,0 +1,84 @@
+-- Database Schema for Library Management System (SQLite Compatible)
+
+-- 1. PUBLISHER Table
+CREATE TABLE IF NOT EXISTS PUBLISHER (
+    Publisher_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL,
+    Address TEXT,
+    Contact_Info TEXT
+);
+
+-- 2. AUTHOR Table
+CREATE TABLE IF NOT EXISTS AUTHOR (
+    Author_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL,
+    Biography TEXT,
+    Birth_Date TEXT
+);
+
+-- 3. CATEGORY Table
+CREATE TABLE IF NOT EXISTS CATEGORY (
+    Category_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL
+);
+
+-- 4. BOOK Table
+CREATE TABLE IF NOT EXISTS BOOK (
+    ISBN TEXT PRIMARY KEY,
+    Title TEXT NOT NULL,
+    Publication_Year INTEGER,
+    Edition TEXT,
+    Publisher_ID INTEGER,
+    FOREIGN KEY (Publisher_ID) REFERENCES PUBLISHER(Publisher_ID)
+);
+
+-- 5. BOOK_AUTHOR Junction Table (Many-to-Many)
+CREATE TABLE IF NOT EXISTS BOOK_AUTHOR (
+    Book_ISBN TEXT,
+    Author_ID INTEGER,
+    PRIMARY KEY (Book_ISBN, Author_ID),
+    FOREIGN KEY (Book_ISBN) REFERENCES BOOK(ISBN),
+    FOREIGN KEY (Author_ID) REFERENCES AUTHOR(Author_ID)
+);
+
+-- 6. BOOK_CATEGORY Junction Table (Many-to-Many)
+CREATE TABLE IF NOT EXISTS BOOK_CATEGORY (
+    Book_ISBN TEXT,
+    Category_ID INTEGER,
+    PRIMARY KEY (Book_ISBN, Category_ID),
+    FOREIGN KEY (Book_ISBN) REFERENCES BOOK(ISBN),
+    FOREIGN KEY (Category_ID) REFERENCES CATEGORY(Category_ID)
+);
+
+-- 7. BOOK_COPY Table
+CREATE TABLE IF NOT EXISTS BOOK_COPY (
+    Copy_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    ISBN TEXT NOT NULL,
+    Status TEXT CHECK (Status IN ('Available', 'Loaned', 'Lost')),
+    Shelf_Location TEXT,
+    FOREIGN KEY (ISBN) REFERENCES BOOK(ISBN)
+);
+
+-- 8. MEMBER Table
+CREATE TABLE IF NOT EXISTS MEMBER (
+    Member_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    First_Name TEXT NOT NULL,
+    Last_Name TEXT NOT NULL,
+    Email TEXT,
+    Phone TEXT,
+    Address TEXT,
+    Join_Date TEXT DEFAULT CURRENT_DATE
+);
+
+-- 9. LOAN Table
+CREATE TABLE IF NOT EXISTS LOAN (
+    Loan_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Book_Copy_ID INTEGER NOT NULL,
+    Member_ID INTEGER NOT NULL,
+    Loan_Date TEXT NOT NULL,
+    Due_Date TEXT NOT NULL,
+    Return_Date TEXT,
+    Status TEXT,
+    FOREIGN KEY (Book_Copy_ID) REFERENCES BOOK_COPY(Copy_ID),
+    FOREIGN KEY (Member_ID) REFERENCES MEMBER(Member_ID)
+);
