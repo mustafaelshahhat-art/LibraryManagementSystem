@@ -66,9 +66,7 @@ LibraryManagementSystem/
 │   └── Entities.cs             # All entity classes
 │
 ├── 📂 Documentation/            # Project Documentation
-│   ├── ProjectDocumentation.html
-│   ├── ProjectDocumentation.md
-│   └── [Screenshots]
+│   └── Library Management System - Project Documentation.pdf
 │
 ├── 📄 LibraryDB.sqlite          # SQLite database
 ├── 📄 schema.sql                # Database schema
