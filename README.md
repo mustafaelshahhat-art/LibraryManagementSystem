@@ -9,19 +9,9 @@ A comprehensive Windows Forms application for managing library operations built 
 
 ---
 
-## 📸 Screenshots
+## 📄 Project Documentation
 
-### Main Menu
-![Main Menu](Documentation/MainMenu.png)
-
-### Book Management
-![Books](Documentation/Books.png)
-
-### Loan Management
-![Loans](Documentation/Loans.png)
-
-### ERD Diagram
-![ERD](Documentation/ERD.png)
+📥 **[View Full Project Documentation (PDF)](Documentation/Library%20Management%20System%20-%20Project%20Documentation.pdf)**
 
 ---
 
@@ -189,9 +179,7 @@ dotnet publish -c Release -o ./publish
 ## 📄 Documentation
 
 Full project documentation is available in the `Documentation/` folder:
-- 📄 `ProjectDocumentation.html` - Full HTML documentation (print-ready)
-- 📄 `ProjectDocumentation.md` - Markdown documentation
-- 🖼️ Screenshots of all forms
+- 📄 **[Project Documentation (PDF)](Documentation/Library%20Management%20System%20-%20Project%20Documentation.pdf)** - Complete documentation with ERD, screenshots, and technical details
 
 ---
 
